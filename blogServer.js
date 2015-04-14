@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
-var sql = require('sqlite3').verbose;
-var db = new sqlite3.Database('blog.db')
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('blogDB.db')
 var ejs = require("ejs");
 //Designate where ejs files are kept
 app.set("view_engine", "ejs");
@@ -42,6 +42,44 @@ app.get('/blog/:id', function(req, res){
 app.get('/blog/new', function(req, res){
 	res.render('new.ejs')
 });
+
+//create new post
+app.post("/blog", function(req, res) {
+	db.run("INSERT INTO posts (title, pic, author, post) VALUES (? , ? , ? , ? )", req.body.title, req.body.pic, req.body.author, req.body.post, function(err) {
+		if (err) console.log(err);
+	})
+			res.redirect('/blog');
+});
+
+
+app.get("/blog/:id/edit", function(req,res){
+	var id = req.params.id
+	db.get("SELECT * FROM posts WHERE id = ?", id, function(err, data) {
+		item = data
+		res.render('edit.ejs', {
+			thisBlog: item
+		})
+	});
+});
+
+//update the post
+app.put('/blog/:id', function(req, res){
+    var id = req.params.id
+    db.run("UPDATE posts SET title = ?, author = ?, post = ?, pic = ? WHERE id = ?", req.body.title, req.body.author, req.body.post, req.body.pic , id, function(err) {
+        if (err) console.log(err);
+        res.redirect('/blog/' + id)
+    });
+});
+
+//delete a post
+app.delete("/blog/:id", function(req, res) {
+	var id = req.params.id
+	db.run("DELETE FROM posts WHERE id = ?", id, function(err) {
+		if (err) console.log(err);
+		res.redirect('/')
+	});
+});
+
 
 //liten to server
 app.listen(3000);
