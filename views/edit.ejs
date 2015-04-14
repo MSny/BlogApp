@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Meir Blog</title>
+</head>
+<body>
+<h1 style="font-family: verdana;">Edit</h1>
+<form action ="/blog/<%= thisBlog.id %>?_method=PUT" method="POST">
+<input style = "width: 250px;" type="text" name="title" value="<%= thisBlog.title %>" ><br><br>
+<input style = "width: 250px;" type="text" name="author" value=" <%= thisBlog.author %> " ><br><br>
+<textarea name="post" style="margin: 0px; max-height: 350px; max-width: 312px;height: 250px;width: 250px;"> <%= thisBlog.post %> </textarea><br><br>
+<input type="text" name="pic" value=" <%= thisBlog.pic %> " <br><br>
+<button>Submit</button><br><br>
+</form>
+<a style="font-family: monospace;" href="/">Back to main</a>
+</body>
+</html>

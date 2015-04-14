@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<body >
+<head>
+	<title>Blog</title>
+	<img style= "position: fixed; right:0px; bottom:0px; "id="pixtrate" src="http://i.imgur.com/s5LW1ku.gif" />
+</head>
+<body style= "margin-right: 700px; background-color: rgb(140,140,140);">
+	<h1 style="color: rgb(225,225,225);font-family: monospace;"><center>Blog</center></h1>	
+		<% post.forEach(function(obj){ %>
+		<center>	<h2 style="font-family: monospace;"><a href="/blog/<%= obj.id %>" style="color: rgb(205,205,205);"><%= obj.title %></a></h2>
+			</br>
+			<img style="height:400px;max-width:500px;width: expression(this.width > 500 ? 500: true);" id="Happy_CpuDude" src="<%= obj.pic %>" />
+			</br>
+			<p style="font-family: monospace;"><b>by: <%= obj.author %></b></p>
+			<p style="font-family: monospace;width: 400px;"><%= obj.post %></p>
+			</br></center>
+		<% }); %>
+		<a style="font-family: monospace;" href="/blogs/new"> New Post </a>
+</body>
+</html>

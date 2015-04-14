@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+	<title>Blog</title>
+	<img style= "position: fixed; right:0px; bottom:0px; "id="pixtrate" src="http://i.imgur.com/dEtvOJU.png" />
+</head>
+<body style= "margin-right: 700px; background-color: rgb(140,140,140);">
+	<h1 style="font-size: -webkit-xxx-large;font-family: monospace; color: rgb(205,205,205);margin: 8px;padding-bottom:;margin-bottom: 0;"> <%= thisBlog.title %> </h1>
+	</br>
+	<img style="height:400px;max-width:500px;width: expression(this.width > 500 ? 500: true);" id="Happy_CpuDude" src="<%= thisBlog.pic %>" />
+	<p style="font-family: monospace;margin: 0px;"><b>by: <%= thisBlog.author %> </b></p>
+	<p style="font-family: monospace;"><%= thisBlog.post %></p>
+			</br></center>
+	<a style="font-family: monospace;" href="/blog/<%= thisBlog.id %>/edit">edit this post </a>
+
+	<br><br><a style="font-family: monospace;" href="/">Back</a>
+
+	<br><br><form method="POST" action="/blog/<%= thisBlog.id %>?_method=DELETE">
+		<button>erase</button>
+	</form>
+</body>
+</html>
